@@ -5,6 +5,12 @@ JOP_TYPE=(
     ('Full Time','Full Time'),
     ('Part Time','Part Time'),
 )
+
+def image_upload(instance,filename):
+    imagename,extention = filename.split('.')
+    # return 'jops/%s/%s.%s'%(instance.id,instance.id,extention)
+    return 'jops/%s.%s'%(instance.id,extention)  
+
 class Jop(models.Model):
     title = models.CharField(max_length=100)
     # location 
@@ -15,6 +21,7 @@ class Jop(models.Model):
     salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=1)
     category = models.ForeignKey(to='Category',on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=image_upload)
     def __str__(self) -> str:
         return self.title
 
