@@ -144,7 +144,7 @@
                               <img style="max-width: 100px; padding-right: 40px;" src="{{obj.image.url}}" alt="" />
                             </div>
                             <div class="jobs_conetent">
-                              <a href="{% url 'jop:jop_detail' obj.id %}"
+                              <a href="{% url 'jop:jop_detail' obj.slug %}"
                                 ><h4>{{obj.title}}</h4></a
                               >
                               <div class="links_locat d-flex align-items-center">
@@ -164,7 +164,7 @@
                               <a class="heart_mark" href="#">
                                 <i class="fa fa-heart"></i>
                               </a>
-                              <a href="{% url 'jop:jop_detail' obj.id %}" class="boxed-btn3"
+                              <a href="{% url 'jop:jop_detail' obj.slug %}" class="boxed-btn3"
                                 >Apply Now</a
                               >
                             </div>

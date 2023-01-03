@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.text import slugify
 # Create your models here.
 JOP_TYPE=(
     ('Full Time','Full Time'),
@@ -22,9 +22,17 @@ class Jop(models.Model):
     experience = models.IntegerField(default=1)
     category = models.ForeignKey(to='Category',on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_upload)
+    slug = models.SlugField(blank=True,null=True )
+    
+    def save(self,*args,**kwargs):
+        #logic
+        self.slug=slugify(self.title) 
+        super(Jop,self).save(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.title
-
+    
+    
 class Category(models.Model):
     name = models.CharField(max_length=30)
     def __str__(self) -> str:

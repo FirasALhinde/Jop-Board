@@ -11,6 +11,6 @@ def jop_list(request):
     context = {'all_obj':page_obj}
     return render(request,'jop/jop_list.html',context)
 
-def jop_detail(request,id):
-    obj = get_object_or_404(Jop,id=id)
+def jop_detail(request,slug):
+    obj = get_object_or_404(Jop,slug=slug)
     return render(request,'jop/jop_detail.html',{'obj':obj})
