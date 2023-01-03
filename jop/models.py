@@ -37,3 +37,15 @@ class Category(models.Model):
     name = models.CharField(max_length=30)
     def __str__(self) -> str:
         return self.name
+
+
+class Apply(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    website = models.URLField()
+    cv = models.FileField(upload_to='apply/')
+    cover_letter = models.TextField(max_length=500)
+    jop = models.ForeignKey(Jop,related_name='apply_jop',on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.name
