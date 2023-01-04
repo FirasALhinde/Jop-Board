@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 # Create your models here.
 JOP_TYPE=(
     ('Full Time','Full Time'),
@@ -12,6 +13,7 @@ def image_upload(instance,filename):
     return 'jops/%s.%s'%(instance.id,extention)  
 
 class Jop(models.Model):
+    owner = models.ForeignKey(User,related_name='jop_user',on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     # location 
     jop_type = models.CharField(max_length=50,choices=JOP_TYPE)
